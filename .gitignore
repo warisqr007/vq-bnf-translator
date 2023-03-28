@@ -28,6 +28,6 @@ vc_gen_wavs
 tools/venv
 ppg-vc
 conformer_ppg_model/en_conformer_ctc_att
-vocoders/vctk_24k10ms
+vocoder/vctk_24k10ms
 wav2vec
 synthesis_output
