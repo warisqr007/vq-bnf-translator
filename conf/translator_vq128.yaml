@@ -1,0 +1,110 @@
+data:
+  train_fid_list: "/mnt/nvme-data1/waris/repo/vq-bnf-translator/train_all.txt"
+  dev_fid_list: "/mnt/nvme-data1/waris/repo/vq-bnf-translator/dev_all.txt" 
+  ppg_dir: "/mnt/data1/waris/repo/vq-bnf/translation-all/vq128/ppgs"
+  ppg_labels_dir: "/mnt/data1/waris/repo/vq-bnf/translation-all/vq128/indices"
+  ppg_file_ext: "npy"
+  # pretrain_model_file: /mnt/nvme-data1/waris/model_checkpoints/translator_vq/translator-vq128/loss_step_490000.pth
+  
+hparas:
+  batch_size: 32
+  valid_step: 10000
+  max_step: 1000000
+  optimizer: 'Lamb'
+  lr: 0.001
+  eps: 0
+  weight_decay: 0
+  lr_scheduler:    # "fixed", "warmup"
+
+model_name: "translator"
+model:
+  input_size: 256    # 256 ppg_dim and 2 pitch 
+  use_spk_dvec: False  # for one_shot VC
+
+  idim: 256
+  odim : 256
+
+  num_labels: 128
+
+  eprenet_conv_layers: 0  # one more linear layer w/o non_linear will be added for 0_centor
+  eprenet_conv_filts: 0
+  eprenet_conv_chans: 0
+  dprenet_layers: 2  # one more linear layer w/o non_linear will be added for 0_centor
+  dprenet_units: 256
+  adim: 512
+  aheads: 4
+  elayers: 6
+  eunits: 2048
+  dlayers: 6
+  dunits: 2048
+  postnet_layers: 0
+  postnet_filts: 5
+  postnet_chans: 256
+  use_masking: True
+  bce_pos_weight: 5.0
+  use_batch_norm: True
+  use_scaled_pos_enc: False
+  encoder_normalize_before: True
+  decoder_normalize_before: False
+  encoder_concat_after: False
+  decoder_concat_after: False
+  spk_embed_dim: null
+  spk_embed_integration_type : concat
+  whereusespkd : atinput
+  reduction_factor: 1
+  encoder_reduction_factor: 1
+  decoder_reduction_factor: 1
+  # use_scaled_pos_enc: True
+  transformer_input_layer: linear #conv2d-scaled-pos-enc
+  loss_type : L2
+  ctc_loss: True
+
+  #pitch
+  use_f0: False
+
+  #RR block:
+  use_rr: False
+
+  #prosody_vec
+  prosody_vec_dim: 256
+
+  # minibatch related
+  batch_sort_key: input # shuffle or input or output
+  batch_bins: 3340800 
+
+  # commitment cost
+  commitment_cost: 0.25 #VQVAE paper -> 0.1 to 2 (0.25 in general)
+  prosody_emb_dim: 256 #192
+  codebook_size: 50
+  codebook_embed_size: 256
+
+  # training related
+  transformer_init: pytorch
+  transformer_warmup_steps: 4000
+  transformer_lr: 0.1
+  initial_encoder_alpha: 1.0
+  initial_decoder_alpha: 1.0
+  eprenet_dropout_rate: 0.0
+  dprenet_dropout_rate: 0.5
+  postnet_dropout_rate: 0.5
+  transformer_enc_dropout_rate: 0.1
+  transformer_enc_positional_dropout_rate: 0.1
+  transformer_enc_attn_dropout_rate: 0.1
+  transformer_dec_dropout_rate: 0.1
+  transformer_dec_positional_dropout_rate: 0.1
+  transformer_dec_attn_dropout_rate: 0.1
+  transformer_enc_dec_attn_dropout_rate: 0.1
+  use_guided_attn_loss: false
+  num_heads_applied_guided_attn: 2
+  num_layers_applied_guided_attn: 2
+  modules_applied_guided_attn: ["encoder-decoder"]
+  guided_attn_loss_lambda: 10
+  enc_init_mods: encoder
+  dec_init_mods: decoder,postnet,feat_out,prob_out
+  positionwise_layer_type : conv1d
+  positionwise_conv_kernel_size : 1
+  use_weighted_masking : False
+  guided_attn_loss_sigma: 0.4  # sigma of guided attention loss
+  guided_attn_loss_lambda: 1.0 # strength of guided attention loss
+  pretrained_model : null
+  
