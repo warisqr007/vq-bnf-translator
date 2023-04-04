@@ -227,4 +227,3 @@ dependencies:
     - wrapt==1.12.1
     - yacs==0.1.7
     - zipp==3.13.0
-prefix: /home/grads/q/quamer.waris/anaconda3/envs/transformerv2
