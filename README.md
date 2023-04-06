@@ -23,7 +23,6 @@ See details here. [Link](https://anonymousis23.github.io/demos/prosody-accent-co
   * You also need to set `KALDI_ROOT` and `PRETRAIN_ROOT` in `kaldi_scripts/extract_features_kaldi.sh` accordingly.
 * Vector Quantization:  [[ARCTIC](http://www.festvox.org/cmu_arctic/) and [L2-ARCTIC](https://psi.engr.tamu.edu/l2-arctic-corpus/), see [here](https://github.com/warisqr007/vq-bnf) for detailed training process.
 * Translator seq2seq (i.e., Seq2seq model): [ARCTIC](http://www.festvox.org/cmu_arctic/) and [L2-ARCTIC](https://psi.engr.tamu.edu/l2-arctic-corpus/). Please see [here]() for a merged version.
-
 All the pretrained the models are available (To be updated) [here](https://drive.google.com/file/d/1RUFXQ9jVXTAgPSukUuWv0TGKGhuaQeeo/view?usp=sharing) 
 
 ### Directory layout (Format your dataset to match below)
@@ -64,3 +63,6 @@ See conf/
 ```
 ./train_vc128_all.sh
 ```
+
+* Synthesizer Code and Training
+see [here](https://github.com/warisqr007/vq-ppg-vc)
