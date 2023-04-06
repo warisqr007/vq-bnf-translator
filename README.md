@@ -61,7 +61,7 @@ See conf/
 
 * Training Model
 ```
-./train_vc128_all.sh
+./train.sh
 ```
 
 * Synthesizer Code and Training
