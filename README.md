@@ -51,6 +51,7 @@ See [the inference script](inference.ipynb)
 * Preprocessing
 ```
 python preprocess_bnfs.py path/to/dataset
+python make_data.py #Edit the file to specify dataset path
 ```
 
 * Vector Quantize the BNFs
