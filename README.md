@@ -40,7 +40,7 @@ All the pretrained the models are available (To be updated) [here](https://drive
 
 ## Quick Start
 
-See [the inference script](inference_script.ipynb)
+See [the inference script](inference.ipynb)
 
 ## Training
 
