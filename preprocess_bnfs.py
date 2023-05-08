@@ -118,7 +118,7 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--skip_existing", action="store_true", help=\
         "Whether to overwrite existing files with the same name. Useful if the preprocessing was "
         "interrupted.")
-    parser.add_argument("--preprocess_hparams", type=str, default="data_objects/preprocess_hparams.yaml", help=\
+    parser.add_argument("--hparams", type=str, default="data_objects/preprocess_hparams.yaml", help=\
         "Path to preprocess config, e.g., data_objects/preprocess_hparams.yaml")
     args = parser.parse_args()
     
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 
     # Preprocess the dataset
     print_args(args, parser)
-    hparams = HpsYaml(args.preprocess_hparams)
+    hparams = HpsYaml(args.hparams)
     args.hparams = hparams
     preprocess_bnfs(**vars(args))
     
