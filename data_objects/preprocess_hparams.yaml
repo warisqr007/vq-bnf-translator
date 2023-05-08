@@ -1,0 +1,4 @@
+sample_rate: 16000
+rescale: False
+rescaling_max: 0.9
+utterance_min_duration: 1.6
